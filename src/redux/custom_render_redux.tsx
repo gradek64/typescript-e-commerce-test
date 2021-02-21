@@ -37,5 +37,3 @@ export function renderWithRedux(
 
   return { store, ...wrappedComponent };
 }
-
-export const getDOMElements = (container: Element, cssSelector: string) => container.querySelector(cssSelector)

@@ -26,7 +26,9 @@ const cartReducer = (state = cart, action:CartActionTypes) => {
           items: [...state.items],
           numberOfItems: state.numberOfItems + 1,
         };
-      } return state;
+      } 
+      //more than 5 items
+      return state
     } 
 
     return {

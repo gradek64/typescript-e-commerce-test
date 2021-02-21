@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderWithRedux, getDOMElements } from '../../../redux/custom_render_redux'
+import { renderWithRedux } from '../../../redux/custom_render_redux'
 import { fireEvent, screen } from '@testing-library/react'
 import { ICart } from '../../../redux/custom_render_redux'
 // custom
@@ -17,9 +17,9 @@ const cart: ICart = {
 };
 
 const getElements = (container: HTMLElement) => {
-  const selectQuantity = getDOMElements(container, '.table-row select')
-  const total = getDOMElements(container, '.table-row .total')
-  const removeButton = getDOMElements(container, '.table-row .simple-button')
+  const selectQuantity = container.querySelector('.table-row select')
+  const total = container.querySelector('.table-row .total')
+  const removeButton = container.querySelector('.table-row .simple-button')
 
   return { selectQuantity, total, removeButton }
 }

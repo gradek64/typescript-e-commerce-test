@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, fireEvent, cleanup, act } from '@testing-library/react'
-import { getDOMElements } from '../../redux/custom_render_redux'
 import Modal from './Modal';
 import dispatchEvent from '../../customEvents/dispatchEvent'
 
@@ -11,11 +10,10 @@ const props = {
 }
 
 const getElements = (container: HTMLElement) => {
-  const modalBody = getDOMElements(container, '.modal')
-  const modalContent = getDOMElements(container, '.modal-content')
+  const modalBody = container.querySelector('.modal')
+  const modalContent = container.querySelector('.modal-content')
   return { modalBody, modalContent }
 }
-
 
 // updates hook needs to be wrapped with act
 const openModalWithCustomEvent = () => act(() => {
@@ -54,7 +52,7 @@ describe('events', () => {
     })
   })
   describe('press on ESC key', () => {
-    it('should close modal when ESCAPE key press', async () => {
+    it('should close modal when ESCAPE key press', () => {
       const { container } = render(<Modal {...props} />);
       const { modalBody } = getElements(container)
       openModalWithCustomEvent()
@@ -63,7 +61,7 @@ describe('events', () => {
       const { _values } = computedStyle as any
       expect(_values.display).toBe('none')
     })
-    it('should NOT close modal when any other key press but ESCAPE', async () => {
+    it('should NOT close modal when any other key press but ESCAPE', () => {
       const { container } = render(<Modal {...props} />);
       const { modalBody } = getElements(container)
       openModalWithCustomEvent()
